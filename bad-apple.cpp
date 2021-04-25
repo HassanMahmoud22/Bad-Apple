@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 const int N = 5;
 const int M = 8;
 char grid[N][M];
@@ -10,22 +9,21 @@ void print_grid()
 {
     bool flag = false;
     cout << "------";
-    for (int i = 0; i <= N+1; cout << "---", i++);
+    for (int i = 0; i < M+5; cout << "---", i++);
     cout << "----\n";
     for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++)
+        for (int j = 0; j < M; j++)
         {
             cout << "|  ";
             cout << grid[i][j] << "  ";
         }
         cout << "|\n";
         cout << "----";
-        for (int i = 0; i <= N+1; cout << "---", i++);
+        for (int i = 0; i < M+5; cout << "---", i++);
         cout << "------\n";
     }
     cout << "YOUR SCORE IS: " << score << endl;
 }
-
 void clear_grid()
 {
     for(int i = 0; i < N; i++)
@@ -37,7 +35,6 @@ void clear_grid()
     }
     score = 0;
 }
-
 void set_elements(int i, int j)
 {
     int x = 0;
@@ -47,7 +44,6 @@ void set_elements(int i, int j)
     if(elements[x] != '0')
         score += elements[x] - '0';
 }
-
 bool check_win()
 {
     int counter = 0;
@@ -63,22 +59,18 @@ bool check_win()
         return true;
     return false;
 }
-
 bool check_fail(int i, int j)
 {
     if(grid[i][j] == '0')
         return true;
     return false;
 }
-
-
 bool valid_position(int i, int j)
 {
     if((i >= 0 && i < N) && (j >= 0 && j < M ))
         return true;
     return false;
 }
-
 bool valid_element(int i, int j)
 {
     if(grid[i][j] == '*')
@@ -93,24 +85,19 @@ int read_input(int &i, int &j)
 		cin >> i >> j;
 	}
 }
-
 void play_game()
 {
-    int i,j;
     while(true)
     {
+            cout<<"Bad-apple Game..."<<endl;
             print_grid();
-            cout << "Enter position: ";
-            cin >> i >> j;
-            while(!valid_position(i,j) || !valid_element(i,j))
-            {
-                read_input(i,j);
-            }
+            int i,j;
+            read_input(i,j);
             set_elements(i,j);
             if(check_win())
             {
                 print_grid();
-                cout << "Winner!!" << endl;
+                cout << "YOU WIN :)" << endl;
                 break;
             }
             else if(check_fail(i,j))
@@ -120,8 +107,6 @@ void play_game()
                 break;
             }
     }
-
-
 }
 int main() {
     while (true) {
